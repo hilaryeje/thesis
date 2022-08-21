@@ -1,27 +1,39 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:thesis_app/controllers/recommended_product_controller.dart';
+import 'package:thesis_app/utils/app_constants.dart';
 import 'package:thesis_app/widgets/app_icon.dart';
 import 'package:thesis_app/widgets/big_text.dart';
 import 'package:thesis_app/widgets/expandable_text.dart';
-
+import 'package:get/get.dart';
+import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
 class RecommendedDetails extends StatelessWidget {
-  const RecommendedDetails({Key? key}) : super(key: key);
+  final int pageId;
+  const RecommendedDetails({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: 70,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.clear),
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(RouteHelper.getInitial());
+                  },
+                  child: AppIcon(icon: Icons.clear),
+                ),
                 AppIcon(icon: Icons.shopping_cart_outlined)
               ],
             ),
@@ -29,7 +41,8 @@ class RecommendedDetails extends StatelessWidget {
               preferredSize: Size.fromHeight(20),
               child: Container(
                 child: Center(
-                    child: BigText(size: Dimensions.font26, text: "title")),
+                    child:
+                        BigText(size: Dimensions.font26, text: product.name!)),
                 width: double.maxFinite,
                 padding: EdgeInsets.only(top: 5, bottom: 10),
                 decoration: BoxDecoration(
@@ -43,14 +56,18 @@ class RecommendedDetails extends StatelessWidget {
             backgroundColor: AppColors.yellowColor,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset("assets/images/beermug1.png",
-                  width: double.maxFinite, fit: BoxFit.cover),
+              background: Image.network(
+                  AppConstants.BASE_URL +
+                      AppConstants.UPLOAD_URL +
+                      product.img!,
+                  width: double.maxFinite,
+                  fit: BoxFit.cover),
             ),
           ),
           SliverToBoxAdapter(
             child: Column(children: [
               Container(
-                child: ExpandableText(text: "maganda ako"),
+                child: ExpandableText(text: product.description!),
                 margin: EdgeInsets.only(
                     left: Dimensions.width20, right: Dimensions.width20),
               )
@@ -74,7 +91,7 @@ class RecommendedDetails extends StatelessWidget {
                   backgroundColor: AppColors.mainColor,
                   icon: Icons.remove),
               BigText(
-                  text: "\$12.88" + " X " + " 0 ",
+                  text: "\$ ${product.price!}  X  0 ",
                   color: AppColors.mainBlackColor,
                   size: Dimensions.font26),
               AppIcon(
@@ -122,7 +139,8 @@ class RecommendedDetails extends StatelessWidget {
                       left: Dimensions.width20,
                       right: Dimensions.width20),
                   child: BigText(
-                      text: "\$1200 | Add to Cart", color: Colors.white),
+                      text: "\$ ${product.price!} | Add to Cart",
+                      color: Colors.white),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Dimensions.radius20),
                       color: AppColors.mainColor),
