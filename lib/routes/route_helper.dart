@@ -1,18 +1,22 @@
+import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:thesis_app/pages/food/popular_list.dart';
 import 'package:thesis_app/pages/home/main_page.dart';
 
+import '../pages/cart/cart_page.dart';
 import '../pages/food/recommended_detail.dart';
 
 class RouteHelper {
   static const String initial = "/";
   static const String popularList = "/popular-list";
   static const String recommendedDetails = "/recommended-details";
+  static const String cartPage = "/cart-page";
 
   static String getInitial() => '$initial';
   static String getPopularList(int pageId) => '$popularList?pageId=$pageId';
   static String getRecommendedDetails(int pageId) =>
       '$recommendedDetails?pageId=$pageId';
+  static String getCartPage() => '$cartPage';
 
   static List<GetPage> routes = [
     GetPage(name: initial, page: () => MainPage()),
@@ -30,5 +34,11 @@ class RouteHelper {
           return RecommendedDetails(pageId: int.parse(pageId!));
         },
         transition: Transition.fadeIn),
+    GetPage(
+        name: cartPage,
+        page: () {
+          return CartPage();
+        },
+        transition: Transition.fadeIn)
   ];
 }

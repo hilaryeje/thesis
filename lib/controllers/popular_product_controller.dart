@@ -4,6 +4,7 @@ import 'package:thesis_app/controllers/cart_controller.dart';
 import 'package:thesis_app/data/repository/popular_product_repo.dart';
 import 'package:thesis_app/models/products_model.dart';
 
+import '../models/cart_models.dart';
 import '../utils/colors.dart';
 
 class PopularProductController extends GetxController {
@@ -95,5 +96,9 @@ class PopularProductController extends GetxController {
 
   int get totalItems {
     return _cart.totalItems;
+  }
+
+  List<CartModel> get getItems {
+    return _cart.getItems;
   }
 }

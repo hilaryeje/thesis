@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:thesis_app/controllers/cart_controller.dart';
 import 'package:thesis_app/controllers/popular_product_controller.dart';
+import 'package:thesis_app/pages/cart/cart_page.dart';
 import 'package:thesis_app/pages/home/main_page.dart';
 import 'package:thesis_app/utils/app_constants.dart';
 import 'package:thesis_app/widgets/app_column.dart';
 import 'package:thesis_app/widgets/expandable_text.dart';
 
+import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widgets/app_icon.dart';
@@ -66,11 +68,17 @@ class PopularList extends StatelessWidget {
                                 ? Positioned(
                                     right: 0,
                                     top: 0,
-                                    child: AppIcon(
-                                      icon: Icons.circle,
-                                      size: 20,
-                                      iconColor: Colors.transparent,
-                                      backgroundColor: AppColors.mainColor,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        print("tapped here...");
+                                        Get.toNamed(RouteHelper.getCartPage());
+                                      },
+                                      child: AppIcon(
+                                        icon: Icons.circle,
+                                        size: 20,
+                                        iconColor: Colors.transparent,
+                                        backgroundColor: AppColors.mainColor,
+                                      ),
                                     ),
                                   )
                                 : Container(),
