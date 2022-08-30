@@ -11,7 +11,7 @@ class PopularProductController extends GetxController {
   final PopularProductRepo popularProductRepo;
   PopularProductController({required this.popularProductRepo});
   List<dynamic> _popularProductList = [];
-  List<dynamic> get PopularProductList => _popularProductList;
+  List<dynamic> get popularProductList => _popularProductList;
   late CartController _cart;
 
   bool _isLoaded = false;

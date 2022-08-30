@@ -42,6 +42,7 @@ class _BodyPageState extends State<BodyPage> {
   @override
   void dispose() {
     pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -56,10 +57,10 @@ class _BodyPageState extends State<BodyPage> {
                   height: Dimensions.pageView,
                   child: PageView.builder(
                       controller: pageController,
-                      itemCount: popularProducts.PopularProductList.length,
+                      itemCount: popularProducts.popularProductList.length,
                       itemBuilder: (context, position) {
                         return _buildPageItem(position,
-                            popularProducts.PopularProductList[position]);
+                            popularProducts.popularProductList[position]);
                       }),
                 )
               : CircularProgressIndicator(
@@ -69,9 +70,9 @@ class _BodyPageState extends State<BodyPage> {
         //dots
         GetBuilder<PopularProductController>(builder: (popularProducts) {
           return DotsIndicator(
-            dotsCount: popularProducts.PopularProductList.isEmpty
+            dotsCount: popularProducts.popularProductList.isEmpty
                 ? 1
-                : popularProducts.PopularProductList.length,
+                : popularProducts.popularProductList.length,
             position: _currPageValue,
             decorator: DotsDecorator(
               activeColor: AppColors.mainColor,
@@ -118,7 +119,8 @@ class _BodyPageState extends State<BodyPage> {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          Get.toNamed(RouteHelper.getRecommendedDetails(index));
+                          Get.toNamed(
+                              RouteHelper.getRecommendedDetails(index, "home"));
                         },
                         child: Container(
                           margin: EdgeInsets.only(
@@ -241,7 +243,7 @@ class _BodyPageState extends State<BodyPage> {
         children: [
           GestureDetector(
             onTap: () {
-              Get.toNamed(RouteHelper.getPopularList(index));
+              Get.toNamed(RouteHelper.getPopularList(index, "home"));
             },
             child: Container(
               height: Dimensions.pageViewContainer,
