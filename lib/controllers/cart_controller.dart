@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:thesis_app/data/repository/cart_repo.dart';
-import 'package:thesis_app/models/cart_models.dart';
+import 'package:thesis_app/models/cart_model.dart';
 
 import '../models/products_model.dart';
 import '../utils/colors.dart';
@@ -12,6 +12,10 @@ class CartController extends GetxController {
   Map<int, CartModel> _items = {};
 
   Map<int, CartModel> get items => _items;
+
+  //only for storage and sharedpreferences
+
+  List<CartModel> storageItems = [];
 
   void addItem(ProductModel product, int quantity) {
     var totalQuantity = 0;
@@ -50,7 +54,7 @@ class CartController extends GetxController {
             backgroundColor: AppColors.mainColor, colorText: Colors.white);
       }
     }
-
+    cartRepo.addToCartList(getItems);
     update();
   }
 
@@ -61,7 +65,7 @@ class CartController extends GetxController {
     return false;
   }
 
-  int getQuatity(ProductModel product) {
+  int getQuantity(ProductModel product) {
     var quantity = 0;
     if (_items.containsKey(product.id)) {
       _items.forEach((key, value) {
@@ -94,5 +98,28 @@ class CartController extends GetxController {
       total += value.quantity! * value.price!;
     });
     return total;
+  }
+
+  List<CartModel> getCartData() {
+    //setCart = cartRepo.getCartList();
+    return storageItems;
+  }
+
+  set setCart(List<CartModel> items) {
+    storageItems = items;
+    //print("Length of the cart items " + storageItems.length.toString());
+    for (int i = 0; i < storageItems.length; i++) {
+      _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
+    }
+  }
+
+  void addToHistory() {
+    cartRepo.addToCartHistoryList();
+    clear();
+  }
+
+  void clear() {
+    _items = {};
+    update();
   }
 }

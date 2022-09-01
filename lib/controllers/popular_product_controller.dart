@@ -4,7 +4,7 @@ import 'package:thesis_app/controllers/cart_controller.dart';
 import 'package:thesis_app/data/repository/popular_product_repo.dart';
 import 'package:thesis_app/models/products_model.dart';
 
-import '../models/cart_models.dart';
+import '../models/cart_model.dart';
 import '../utils/colors.dart';
 
 class PopularProductController extends GetxController {
@@ -74,17 +74,17 @@ class PopularProductController extends GetxController {
     exist = _cart.existInCart(product);
     //if exist
     //get from storage _inCartItems
-    print("exist or not? " + exist.toString());
+    //print("exist or not? " + exist.toString());
     if (exist) {
-      _inCartItems = _cart.getQuatity(product);
+      _inCartItems = _cart.getQuantity(product);
     }
-    print("The quantity in the cart is " + _inCartItems.toString());
+    //print("The quantity in the cart is " + _inCartItems.toString());
   }
 
   void addItem(ProductModel product) {
     _cart.addItem(product, _quantity);
     _quantity = 0;
-    _inCartItems = _cart.getQuatity(product);
+    _inCartItems = _cart.getQuantity(product);
     _cart.items.forEach((key, value) {
       print("The ID is " +
           value.id.toString() +
