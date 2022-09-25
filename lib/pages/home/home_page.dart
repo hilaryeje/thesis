@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:thesis_app/pages/account/account_page.dart';
 import 'package:thesis_app/pages/cart/cart_history.dart';
 //import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:thesis_app/pages/home/main_page.dart';
 
 import '../../utils/colors.dart';
+import '../auth/sign_up_page.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -19,9 +21,10 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     MainPage(),
-    Container(child: Center(child: Text("Next page"))),
+    SignUpPage(),
+    //Container(child: Center(child: Text("Next page"))),
     CartHistory(),
-    Container(child: Center(child: Text("Next next next page"))),
+    AccountPage(),
   ];
 
   void onTapNav(int index) {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:thesis_app/controllers/cart_controller.dart';
+import 'package:thesis_app/pages/auth/sign_in_page.dart';
+import 'package:thesis_app/pages/auth/sign_up_page.dart';
 import 'package:thesis_app/pages/cart/cart_page.dart';
 import 'package:thesis_app/pages/food/popular_list.dart';
 import 'package:thesis_app/pages/food/recommended_detail.dart';
@@ -29,11 +31,13 @@ class MyApp extends StatelessWidget {
     return GetBuilder<PopularProductController>(builder: (_) {
       return GetBuilder<RecommendedProductController>(builder: (_) {
         return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
-            //home: SplashScreen(),
-            initialRoute: RouteHelper.getSplashPage(),
-            getPages: RouteHelper.routes);
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          home: SignInPage(),
+          //home: SplashScreen(),
+          //initialRoute: RouteHelper.getSplashPage(),
+          //getPages: RouteHelper.routes
+        );
       });
     });
   }
