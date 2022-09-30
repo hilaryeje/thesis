@@ -6,6 +6,7 @@ import 'package:thesis_app/pages/cart/cart_history.dart';
 import 'package:thesis_app/pages/home/main_page.dart';
 
 import '../../utils/colors.dart';
+import '../auth/sign_in_page.dart';
 import '../auth/sign_up_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     MainPage(),
-    SignUpPage(),
+    Container(child: Text("History page")),
     //Container(child: Center(child: Text("Next page"))),
     CartHistory(),
     AccountPage(),

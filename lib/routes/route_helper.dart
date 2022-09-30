@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:thesis_app/pages/auth/sign_in_page.dart';
 import 'package:thesis_app/pages/food/popular_list.dart';
 import 'package:thesis_app/pages/home/main_page.dart';
 import 'package:thesis_app/pages/splash/splash_page.dart';
@@ -14,6 +15,7 @@ class RouteHelper {
   static const String popularList = "/popular-list";
   static const String recommendedDetails = "/recommended-details";
   static const String cartPage = "/cart-page";
+  static const String signIn = "/sign-in";
 
   static String getSplashPage() => '$splashPage';
   static String getInitial() => '$initial';
@@ -22,10 +24,21 @@ class RouteHelper {
   static String getRecommendedDetails(int pageId, String page) =>
       '$recommendedDetails?pageId=$pageId&page=$page';
   static String getCartPage() => '$cartPage';
+  static String getSignInPage() => '$signIn';
 
   static List<GetPage> routes = [
     GetPage(name: splashPage, page: () => SplashScreen()),
-    GetPage(name: initial, page: () => HomePage()),
+    GetPage(
+        name: initial,
+        page: () {
+          return HomePage();
+        }),
+    GetPage(
+        name: signIn,
+        page: () {
+          return SignInPage();
+        },
+        transition: Transition.fade),
     GetPage(
         name: popularList,
         page: () {

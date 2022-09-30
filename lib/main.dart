@@ -31,13 +31,12 @@ class MyApp extends StatelessWidget {
     return GetBuilder<PopularProductController>(builder: (_) {
       return GetBuilder<RecommendedProductController>(builder: (_) {
         return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          home: SignInPage(),
-          //home: SplashScreen(),
-          //initialRoute: RouteHelper.getSplashPage(),
-          //getPages: RouteHelper.routes
-        );
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            //home: SignInPage(),
+            //home: SplashScreen(),
+            initialRoute: RouteHelper.getSplashPage(),
+            getPages: RouteHelper.routes);
       });
     });
   }

@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:thesis_app/controllers/auth_controller.dart';
+import 'package:thesis_app/controllers/cart_controller.dart';
 import 'package:thesis_app/widgets/account_widget.dart';
 import 'package:thesis_app/widgets/app_icon.dart';
 import 'package:thesis_app/widgets/big_text.dart';
 
+import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
@@ -104,8 +108,32 @@ class AccountPage extends StatelessWidget {
                               size: Dimensions.height10 * 5,
                             ),
                             bigText: BigText(
-                              text: "Message",
+                              text: "Messages",
                             )),
+                        SizedBox(
+                          height: Dimensions.height20,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            if (Get.find<AuthController>().userLoggedIn()) {
+                              Get.find<AuthController>().clearSharedData();
+                              Get.find<CartController>().clear();
+                              Get.find<CartController>().clearCartHistory();
+                              Get.offNamed(RouteHelper.getSignInPage());
+                            }
+                          },
+                          child: AccountWidget(
+                              appIcon: AppIcon(
+                                icon: Icons.logout,
+                                backgroundColor: AppColors.mainColor,
+                                iconColor: Colors.white,
+                                iconSize: Dimensions.height10 * 5 / 2,
+                                size: Dimensions.height10 * 5,
+                              ),
+                              bigText: BigText(
+                                text: "Log Out",
+                              )),
+                        ),
                         SizedBox(
                           height: Dimensions.height20,
                         ),
