@@ -23,7 +23,6 @@ class _HomePageState extends State<HomePage> {
   List pages = [
     MainPage(),
     Container(child: Text("History page")),
-    //Container(child: Center(child: Text("Next page"))),
     CartHistory(),
     AccountPage(),
   ];

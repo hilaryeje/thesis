@@ -13,7 +13,7 @@ import 'controllers/popular_product_controller.dart';
 import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
 import 'pages/home/page_body.dart';
-import 'package:http/http.dart' as http;
+//import 'package:http/http.dart' as http;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
